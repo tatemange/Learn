@@ -67,10 +67,10 @@
         body {
             background-color: #f8fafc;
             background-image: 
-                radial-gradient(at 0% 0%, rgba(94, 234, 212, 0.15) 0px, transparent 50%),
+                radial-gradient(at 0% 0%, rgba(139, 92, 246, 0.12) 0px, transparent 50%),
                 radial-gradient(at 100% 0%, rgba(168, 85, 247, 0.15) 0px, transparent 50%),
-                radial-gradient(at 100% 100%, rgba(59, 130, 246, 0.15) 0px, transparent 50%),
-                radial-gradient(at 0% 100%, rgba(244, 63, 94, 0.15) 0px, transparent 50%);
+                radial-gradient(at 100% 100%, rgba(59, 130, 246, 0.12) 0px, transparent 50%),
+                radial-gradient(at 0% 100%, rgba(167, 139, 250, 0.1) 0px, transparent 50%);
             background-attachment: fixed;
             min-height: 100vh;
         }
@@ -78,9 +78,9 @@
             body {
                 background-color: #0f172a;
                 background-image: 
-                    radial-gradient(at 0% 0%, rgba(20, 184, 166, 0.1) 0px, transparent 50%),
+                    radial-gradient(at 0% 0%, rgba(139, 92, 246, 0.08) 0px, transparent 50%),
                     radial-gradient(at 100% 0%, rgba(147, 51, 234, 0.1) 0px, transparent 50%),
-                    radial-gradient(at 100% 100%, rgba(37, 99, 235, 0.1) 0px, transparent 50%);
+                    radial-gradient(at 100% 100%, rgba(124, 58, 237, 0.08) 0px, transparent 50%);
             }
         }
         .glass-panel {
@@ -100,13 +100,29 @@
         }
         .prose ul { list-style-type: disc; padding-left: 1.5em; }
         .prose h3 { font-weight: 700; margin-top: 1em; color: currentColor; }
-        *:focus-visible { outline: 2px solid #0d9488; outline-offset: 2px; }
+        .prose p { margin-bottom: 0.5em; }
+        .prose code { background: rgba(139, 92, 246, 0.1); padding: 0.125rem 0.25rem; border-radius: 0.25rem; }
+        
+        /* Focus States */
+        *:focus-visible { outline: 2px solid #8b5cf6; outline-offset: 2px; }
+        
+        /* Custom Scrollbars */
         .chat-scroll::-webkit-scrollbar { width: 6px; }
         .chat-scroll::-webkit-scrollbar-track { background: transparent; }
-        .chat-scroll::-webkit-scrollbar-thumb { background-color: rgba(156, 163, 175, 0.5); border-radius: 20px; }
+        .chat-scroll::-webkit-scrollbar-thumb { background-color: rgba(139, 92, 246, 0.3); border-radius: 20px; }
+        .chat-scroll::-webkit-scrollbar-thumb:hover { background-color: rgba(139, 92, 246, 0.5); }
+        
+        .custom-scrollbar::-webkit-scrollbar { width: 4px; height: 4px; }
+        .custom-scrollbar::-webkit-scrollbar-track { background: transparent; }
+        .custom-scrollbar::-webkit-scrollbar-thumb { background-color: rgba(139, 92, 246, 0.3); border-radius: 20px; }
+        .custom-scrollbar::-webkit-scrollbar-thumb:hover { background-color: rgba(139, 92, 246, 0.5); }
         
         /* Subject Tab Active State */
-        .tab-active { background-color: #0d9488; color: white; border-color: transparent; }
+        .tab-active { background-color: #8b5cf6; color: white; border-color: transparent; box-shadow: 0 2px 8px rgba(139, 92, 246, 0.3); }
+        
+        /* Smooth Transitions */
+        .subject-tab { transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1); }
+        .subject-tab:not(.tab-active):hover { transform: translateY(-1px); }
     </style>
 </head>
 <body class="text-slate-800 dark:text-slate-100 transition-colors duration-500 overflow-x-hidden p-3 md:p-6 lg:p-8 flex flex-col items-center">
@@ -314,9 +330,9 @@
                     datasets: [{
                         label: 'Niveau',
                         data: [state.stats.comprehension, state.stats.reasoning, state.stats.vocabulary, state.stats.memory, state.stats.application],
-                        backgroundColor: 'rgba(20, 184, 166, 0.2)',
-                        borderColor: '#14b8a6',
-                        pointBackgroundColor: '#14b8a6',
+                        backgroundColor: 'rgba(139, 92, 246, 0.2)',
+                        borderColor: '#8b5cf6',
+                        pointBackgroundColor: '#8b5cf6',
                         pointBorderColor: '#fff'
                     }]
                 },
@@ -490,7 +506,9 @@
             document.querySelectorAll('.subject-tab').forEach(btn => {
                 btn.classList.remove('tab-active', 'bg-violet-600', 'text-white');
                 btn.classList.add('hover:bg-white/50');
-                if(btn.textContent.toLowerCase().includes(subj === 'english' ? 'anglais' : subj === 'math' ? 'math' : subj === 'physics' ? 'physique' : 'culture')) {
+                
+                // Robust check: see if the button's onclick contains the subject key
+                if(btn.getAttribute('onclick').includes(`'${subj}'`)) {
                     btn.classList.add('tab-active');
                     btn.classList.remove('hover:bg-white/50');
                 }
