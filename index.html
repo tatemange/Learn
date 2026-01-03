@@ -38,7 +38,7 @@
                     },
                     colors: {
                         brand: {
-                            50: '#f0fdfa', 400: '#2dd4bf', 500: '#14b8a6', 600: '#0d9488', 900: '#134e4a',
+                            50: '#f5f3ff', 400: '#a78bfa', 500: '#8b5cf6', 600: '#7c3aed', 900: '#4c1d95',
                         }
                     },
                     borderRadius: { 'premium': '2.5rem' },
@@ -123,10 +123,10 @@
             <header class="glass-panel p-6 rounded-3xl text-center lg:text-left animate-fade-in-up flex flex-col justify-between">
                 <div>
                     <div class="flex items-center justify-center lg:justify-start gap-3 mb-2">
-                        <div class="bg-gradient-to-br from-teal-400 to-blue-500 text-white p-2 rounded-xl">
+                        <div class="bg-gradient-to-br from-violet-400 to-blue-500 text-white p-2 rounded-xl">
                             <i data-lucide="brain-circuit" class="w-6 h-6"></i>
                         </div>
-                        <h1 class="text-2xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-teal-500 to-blue-600 dark:from-teal-400 dark:to-blue-400">
+                        <h1 class="text-2xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-violet-500 to-blue-600 dark:from-violet-400 dark:to-blue-400">
                             LingoAI <span class="text-sm font-light text-slate-400">V3</span>
                         </h1>
                     </div>
@@ -155,29 +155,53 @@
             <section class="glass-panel rounded-premium p-6 md:p-8 animate-fade-in-up relative overflow-hidden flex flex-col gap-6" style="animation-delay: 0.2s;">
                 
                 <!-- Subject Selector Tabs -->
-                <div class="flex flex-wrap gap-2 justify-center lg:justify-start bg-slate-100/50 dark:bg-slate-800/50 p-2 rounded-2xl w-fit mx-auto lg:mx-0">
-                    <button onclick="setSubject('english')" class="subject-tab tab-active px-4 py-2 rounded-xl text-sm font-bold transition-all flex items-center gap-2">
+                <div class="flex flex-wrap gap-2 justify-center lg:justify-start bg-slate-100/50 dark:bg-slate-800/50 p-2 rounded-2xl w-fit mx-auto lg:mx-0 max-h-[140px] overflow-y-auto custom-scrollbar">
+                    <button onclick="setSubject('english')" class="subject-tab tab-active px-3 py-2 rounded-xl text-xs font-bold transition-all flex items-center gap-2">
                         <i data-lucide="languages" class="w-4 h-4"></i> Anglais
                     </button>
-                    <button onclick="setSubject('math')" class="subject-tab px-4 py-2 rounded-xl text-sm font-bold transition-all flex items-center gap-2 hover:bg-white/50 dark:hover:bg-slate-700/50">
+                    <button onclick="setSubject('math')" class="subject-tab px-3 py-2 rounded-xl text-xs font-bold transition-all flex items-center gap-2 hover:bg-white/50 dark:hover:bg-slate-700/50">
                         <i data-lucide="sigma" class="w-4 h-4"></i> Maths
                     </button>
-                    <button onclick="setSubject('physics')" class="subject-tab px-4 py-2 rounded-xl text-sm font-bold transition-all flex items-center gap-2 hover:bg-white/50 dark:hover:bg-slate-700/50">
+                    <button onclick="setSubject('physics')" class="subject-tab px-3 py-2 rounded-xl text-xs font-bold transition-all flex items-center gap-2 hover:bg-white/50 dark:hover:bg-slate-700/50">
                         <i data-lucide="atom" class="w-4 h-4"></i> Physique
                     </button>
-                    <button onclick="setSubject('general')" class="subject-tab px-4 py-2 rounded-xl text-sm font-bold transition-all flex items-center gap-2 hover:bg-white/50 dark:hover:bg-slate-700/50">
+                    <button onclick="setSubject('code')" class="subject-tab px-3 py-2 rounded-xl text-xs font-bold transition-all flex items-center gap-2 hover:bg-white/50 dark:hover:bg-slate-700/50">
+                        <i data-lucide="code-2" class="w-4 h-4"></i> Code
+                    </button>
+                    <button onclick="setSubject('history')" class="subject-tab px-3 py-2 rounded-xl text-xs font-bold transition-all flex items-center gap-2 hover:bg-white/50 dark:hover:bg-slate-700/50">
+                        <i data-lucide="scroll" class="w-4 h-4"></i> Histoire
+                    </button>
+                    <button onclick="setSubject('biology')" class="subject-tab px-3 py-2 rounded-xl text-xs font-bold transition-all flex items-center gap-2 hover:bg-white/50 dark:hover:bg-slate-700/50">
+                        <i data-lucide="dna" class="w-4 h-4"></i> Biologie
+                    </button>
+                    <button onclick="setSubject('chemistry')" class="subject-tab px-3 py-2 rounded-xl text-xs font-bold transition-all flex items-center gap-2 hover:bg-white/50 dark:hover:bg-slate-700/50">
+                        <i data-lucide="flask-conical" class="w-4 h-4"></i> Chimie
+                    </button>
+                    <button onclick="setSubject('economy')" class="subject-tab px-3 py-2 rounded-xl text-xs font-bold transition-all flex items-center gap-2 hover:bg-white/50 dark:hover:bg-slate-700/50">
+                        <i data-lucide="trending-up" class="w-4 h-4"></i> Économie
+                    </button>
+                    <button onclick="setSubject('philosophy')" class="subject-tab px-3 py-2 rounded-xl text-xs font-bold transition-all flex items-center gap-2 hover:bg-white/50 dark:hover:bg-slate-700/50">
+                        <i data-lucide="brain-circuit" class="w-4 h-4"></i> Philo
+                    </button>
+                    <button onclick="setSubject('geography')" class="subject-tab px-3 py-2 rounded-xl text-xs font-bold transition-all flex items-center gap-2 hover:bg-white/50 dark:hover:bg-slate-700/50">
+                        <i data-lucide="map" class="w-4 h-4"></i> Géo
+                    </button>
+                    <button onclick="setSubject('literature')" class="subject-tab px-3 py-2 rounded-xl text-xs font-bold transition-all flex items-center gap-2 hover:bg-white/50 dark:hover:bg-slate-700/50">
+                        <i data-lucide="book-open" class="w-4 h-4"></i> Littérature
+                    </button>
+                    <button onclick="setSubject('general')" class="subject-tab px-3 py-2 rounded-xl text-xs font-bold transition-all flex items-center gap-2 hover:bg-white/50 dark:hover:bg-slate-700/50">
                         <i data-lucide="globe" class="w-4 h-4"></i> Culture G
                     </button>
                 </div>
 
                 <!-- Generator -->
                 <div id="generatorContainer" class="flex flex-col items-center gap-4">
-                    <button id="btnGenerate" onclick="generateContent()" class="relative w-full max-w-md bg-gradient-to-r from-teal-500 to-teal-600 hover:from-teal-600 hover:to-teal-700 text-white font-bold py-4 px-6 rounded-2xl shadow-lg transform transition-all hover:-translate-y-1 hover:shadow-xl active:translate-y-0 disabled:opacity-70 disabled:cursor-not-allowed">
+                    <button id="btnGenerate" onclick="generateContent()" class="relative w-full max-w-md bg-gradient-to-r from-violet-500 to-violet-600 hover:from-violet-600 hover:to-violet-700 text-white font-bold py-4 px-6 rounded-2xl shadow-lg transform transition-all hover:-translate-y-1 hover:shadow-xl active:translate-y-0 disabled:opacity-70 disabled:cursor-not-allowed">
                         <div class="flex items-center justify-center gap-3">
                             <span id="btnIcon"><i data-lucide="sparkles" class="w-5 h-5 fill-current"></i></span>
                             <span id="btnText">Générer un exercice</span>
                         </div>
-                        <div id="loadingIndicator" class="hidden absolute inset-0 flex items-center justify-center bg-teal-600 rounded-2xl">
+                        <div id="loadingIndicator" class="hidden absolute inset-0 flex items-center justify-center bg-violet-600 rounded-2xl">
                             <i data-lucide="loader-2" class="w-6 h-6 animate-spin"></i>
                         </div>
                     </button>
@@ -201,10 +225,10 @@
 
                     <!-- Analysis Result -->
                     <div id="analysisResult" class="hidden animate-fade-in-up">
-                        <div class="glass-panel rounded-2xl p-6 bg-white/80 dark:bg-slate-900/80 border-l-4 border-teal-500">
+                        <div class="glass-panel rounded-2xl p-6 bg-white/80 dark:bg-slate-900/80 border-l-4 border-violet-500">
                              <div class="flex justify-between items-center mb-3">
                                 <h4 class="font-bold text-lg flex items-center gap-2">
-                                    <i data-lucide="microscope" class="w-4 h-4 text-teal-500"></i>
+                                    <i data-lucide="microscope" class="w-4 h-4 text-violet-500"></i>
                                     Analyse Détaillée
                                 </h4>
                                 <button onclick="closeAnalysis()" class="text-slate-400 hover:text-slate-600"><i data-lucide="x" class="w-4 h-4"></i></button>
@@ -216,7 +240,7 @@
 
                 <!-- Empty State -->
                 <div id="welcomeState" class="text-center py-10 text-slate-400">
-                    <i data-lucide="arrow-up" class="w-6 h-6 mx-auto mb-2 animate-bounce text-teal-500"></i>
+                    <i data-lucide="arrow-up" class="w-6 h-6 mx-auto mb-2 animate-bounce text-violet-500"></i>
                     <p>Sélectionnez un sujet et générez du contenu.</p>
                 </div>
             </section>
@@ -224,14 +248,14 @@
             <!-- Chat Section -->
             <section class="glass-panel rounded-premium p-6 flex flex-col h-[400px] animate-fade-in-up relative" style="animation-delay: 0.3s;">
                 <div class="flex items-center gap-2 mb-4 pb-4 border-b border-slate-200 dark:border-slate-700">
-                    <i data-lucide="messages-square" class="w-5 h-5 text-teal-500"></i>
+                    <i data-lucide="messages-square" class="w-5 h-5 text-violet-500"></i>
                     <h3 class="font-bold">Discussion & Aide</h3>
                 </div>
                 
                 <div id="chatHistory" class="flex-1 overflow-y-auto chat-scroll space-y-4 mb-4 p-2">
                     <div class="flex items-start gap-3">
-                        <div class="w-8 h-8 rounded-full bg-teal-100 dark:bg-teal-900 flex items-center justify-center flex-shrink-0">
-                            <i data-lucide="bot" class="w-4 h-4 text-teal-600 dark:text-teal-300"></i>
+                        <div class="w-8 h-8 rounded-full bg-violet-100 dark:bg-violet-900 flex items-center justify-center flex-shrink-0">
+                            <i data-lucide="bot" class="w-4 h-4 text-violet-600 dark:text-violet-300"></i>
                         </div>
                         <div class="bg-white/60 dark:bg-slate-700/60 p-3 rounded-2xl rounded-tl-none text-sm shadow-sm max-w-[85%]">
                             <p>Bonjour ! Je suis prêt pour les Maths, la Physique ou l'Anglais.</p>
@@ -241,9 +265,9 @@
 
                 <div class="relative w-full">
                     <textarea id="chatInput" rows="1" placeholder="Posez une question (ex: Résous pour x...)" 
-                        class="w-full bg-slate-100 dark:bg-slate-800 border-none rounded-2xl py-3 px-5 pr-12 focus:ring-2 focus:ring-teal-500 outline-none transition-all shadow-inner resize-none overflow-hidden"
+                        class="w-full bg-slate-100 dark:bg-slate-800 border-none rounded-2xl py-3 px-5 pr-12 focus:ring-2 focus:ring-violet-500 outline-none transition-all shadow-inner resize-none overflow-hidden"
                         onkeypress="handleChatEnter(event)" oninput="this.style.height = ''; this.style.height = this.scrollHeight + 'px'"></textarea>
-                    <button onclick="sendChatMessage()" class="absolute right-2 bottom-2 p-2 bg-teal-500 text-white rounded-xl hover:bg-teal-600 transition-colors shadow-md flex items-center justify-center h-8 w-8">
+                    <button onclick="sendChatMessage()" class="absolute right-2 bottom-2 p-2 bg-violet-500 text-white rounded-xl hover:bg-violet-600 transition-colors shadow-md flex items-center justify-center h-8 w-8">
                         <i data-lucide="send" class="w-4 h-4"></i>
                     </button>
                 </div>
@@ -349,6 +373,102 @@
                     { id: 'app', label: 'Application', icon: 'hammer' }
                 ]
             },
+            code: {
+                btnText: "Générer un snippet",
+                icon: "code-2",
+                prompt: "Génère un snippet de code intéressant en Python ou JavaScript (Algo ou Pattern).",
+                jsonInstruct: '{ "main": "Le code (Markdown)", "sub": "Ce que ça fait", "type": "code" }',
+                actions: [
+                    { id: 'debug', label: 'Optimiser', icon: 'zap' },
+                    { id: 'explain', label: 'Expliquer', icon: 'info' },
+                    { id: 'convert', label: 'Typer', icon: 'file-code' },
+                    { id: 'bugs', label: 'Bugs potentiels', icon: 'bug' }
+                ]
+            },
+            history: {
+                btnText: "Générer un événement",
+                icon: "scroll",
+                prompt: "Génère un événement historique marquant (Antiquité à nos jours).",
+                jsonInstruct: '{ "main": "L\'événement et la date", "sub": "Pourquoi c\'est majeur", "type": "history" }',
+                actions: [
+                    { id: 'causes', label: 'Causes', icon: 'arrow-left' },
+                    { id: 'consequences', label: 'Conséquences', icon: 'arrow-right' },
+                    { id: 'people', label: 'Personnages', icon: 'users' },
+                    { id: 'date', label: 'Timeline', icon: 'calendar' }
+                ]
+            },
+            biology: {
+                btnText: "Générer un concept bio",
+                icon: "dna",
+                prompt: "Génère un concept de biologie (Cellule, ADN, Évolution...).",
+                jsonInstruct: '{ "main": "Le concept", "sub": "Définition simple", "type": "biology" }',
+                actions: [
+                    { id: 'function', label: 'Fonction', icon: 'activity' },
+                    { id: 'location', label: 'Localisation', icon: 'map-pin' },
+                    { id: 'diagram', label: 'Structure', icon: 'box' },
+                    { id: 'disease', label: 'Pathologies', icon: 'alert-triangle' }
+                ]
+            },
+            chemistry: {
+                btnText: "Générer une réaction",
+                icon: "flask-conical",
+                prompt: "Génère une réaction chimique ou une molécule intéressante.",
+                jsonInstruct: '{ "main": "Formule (LaTeX)", "sub": "Nom commun/IUPAC", "type": "chemistry" }',
+                actions: [
+                    { id: 'balance', label: 'Équilibrer', icon: 'scale' },
+                    { id: 'products', label: 'Produits', icon: 'arrow-right-circle' },
+                    { id: 'risk', label: 'Dangers', icon: 'skull' },
+                    { id: 'use', label: 'Usage', icon: 'factory' }
+                ]
+            },
+            economy: {
+                btnText: "Générer un principe",
+                icon: "trending-up",
+                prompt: "Génère un principe économique ou un biais cognitif lié à l'argent.",
+                jsonInstruct: '{ "main": "Le principe", "sub": "En une phrase", "type": "economy" }',
+                actions: [
+                    { id: 'example', label: 'Exemple', icon: 'pie-chart' },
+                    { id: 'history', label: 'Origine', icon: 'history' },
+                    { id: 'impact', label: 'Impact', icon: 'globe' },
+                    { id: 'critic', label: 'Critiques', icon: 'message-square' }
+                ]
+            },
+            philosophy: {
+                btnText: "Générer une pensée",
+                icon: "brain-circuit",
+                prompt: "Génère une citation philosophique ou un concept célèbre.",
+                jsonInstruct: '{ "main": "La citation/concept", "sub": "Auteur et École", "type": "philosophy" }',
+                actions: [
+                    { id: 'analyze', label: 'Analyser', icon: 'zoom-in' },
+                    { id: 'context', label: 'Contexte', icon: 'book-open' },
+                    { id: 'counter', label: 'Réfutation', icon: 'shield' },
+                    { id: 'today', label: 'Actuel ?', icon: 'clock' }
+                ]
+            },
+            geography: {
+                btnText: "Générer un lieu",
+                icon: "map",
+                prompt: "Génère un fait géographique sur un pays, une ville ou un phénomène naturel.",
+                jsonInstruct: '{ "main": "Le lieu/phénomène", "sub": "Localisation", "type": "geography" }',
+                actions: [
+                    { id: 'climate', label: 'Climat', icon: 'sun' },
+                    { id: 'pop', label: 'Population', icon: 'users' },
+                    { id: 'geo', label: 'Géopolitique', icon: 'flag' },
+                    { id: 'fun', label: 'Fun Fact', icon: 'star' }
+                ]
+            },
+            literature: {
+                btnText: "Générer une oeuvre",
+                icon: "book-open",
+                prompt: "Génère un titre d'oeuvre littéraire classique ou un incipit célèbre.",
+                jsonInstruct: '{ "main": "Titre/Incipit", "sub": "Auteur", "type": "literature" }',
+                actions: [
+                    { id: 'style', label: 'Style', icon: 'pen-tool' },
+                    { id: 'meaning', label: 'Sens', icon: 'eye' },
+                    { id: 'era', label: 'Époque', icon: 'calendar' },
+                    { id: 'similar', label: 'A lire aussi', icon: 'copy' }
+                ]
+            },
             general: {
                 btnText: "Fait intéressant",
                 icon: "globe",
@@ -357,7 +477,8 @@
                 actions: [
                     { id: 'more', label: 'En savoir plus', icon: 'plus' },
                     { id: 'quiz', label: 'Vrai/Faux', icon: 'help-circle' },
-                    { id: 'context', label: 'Contexte', icon: 'map' }
+                    { id: 'context', label: 'Contexte', icon: 'map' },
+                    { id: 'source', label: 'Source', icon: 'link' }
                 ]
             }
         };
@@ -367,7 +488,7 @@
             
             // UI Update Tabs
             document.querySelectorAll('.subject-tab').forEach(btn => {
-                btn.classList.remove('tab-active', 'bg-teal-600', 'text-white');
+                btn.classList.remove('tab-active', 'bg-violet-600', 'text-white');
                 btn.classList.add('hover:bg-white/50');
                 if(btn.textContent.toLowerCase().includes(subj === 'english' ? 'anglais' : subj === 'math' ? 'math' : subj === 'physics' ? 'physique' : 'culture')) {
                     btn.classList.add('tab-active');
@@ -397,7 +518,7 @@
                 btn.className = "flex flex-col items-center justify-center p-3 rounded-xl bg-white/40 dark:bg-slate-800/40 hover:bg-white dark:hover:bg-slate-700 border border-white/50 dark:border-white/10 transition-all hover:scale-105 group";
                 btn.onclick = () => analyze(act.id);
                 btn.innerHTML = `
-                    <i data-lucide="${act.icon}" class="w-6 h-6 text-teal-600 dark:text-teal-400 mb-1 group-hover:text-teal-500"></i>
+                    <i data-lucide="${act.icon}" class="w-6 h-6 text-violet-600 dark:text-violet-400 mb-1 group-hover:text-violet-500"></i>
                     <span class="text-[10px] font-bold text-slate-600 dark:text-slate-300 uppercase">${act.label}</span>
                 `;
                 container.appendChild(btn);
@@ -524,10 +645,10 @@
             const icon = role === 'bot' ? 'bot' : 'user';
             
             div.innerHTML = `
-                <div class="w-8 h-8 rounded-full ${role==='bot'?'bg-teal-100 dark:bg-teal-900':'bg-slate-200'} flex items-center justify-center flex-shrink-0">
+                <div class="w-8 h-8 rounded-full ${role==='bot'?'bg-violet-100 dark:bg-violet-900':'bg-slate-200'} flex items-center justify-center flex-shrink-0">
                     <i data-lucide="${icon}" class="w-4 h-4"></i>
                 </div>
-                <div class="${role==='bot'?'bg-white/60 dark:bg-slate-700/60 rounded-tl-none':'bg-teal-500 text-white rounded-tr-none'} p-3 rounded-2xl text-sm shadow-sm max-w-[85%]">
+                <div class="${role==='bot'?'bg-white/60 dark:bg-slate-700/60 rounded-tl-none':'bg-violet-500 text-white rounded-tr-none'} p-3 rounded-2xl text-sm shadow-sm max-w-[85%]">
                      <div class="prose prose-xs ${role==='bot'?'prose-slate dark:prose-invert':'prose-invert'} max-w-none">
                         ${marked.parse(text)}
                     </div>
