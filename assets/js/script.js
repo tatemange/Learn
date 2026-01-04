@@ -1,22 +1,22 @@
+
 // --- CONFIGURATION MANAGEMENT ---
-// Try to load from global CONFIG (config.js), fallback to localStorage, or empty
+// Try to load from global C (config.js), fallback to localStorage, or empty
 let appConfig = {
-    apiKey: localStorage.getItem("lingo_api_key") || "",
-    model: "Qwen/Qwen3-4B-Instruct-2507"
+    K: localStorage.getItem("lingo_api_key") || "",
+    M: "Qwen/Qwen3-4B-Instruct-2507"
 };
 
-
-// If config.js is present and loaded, override/merge
-if (typeof CONFIG !== 'undefined') {
-    appConfig = { ...appConfig, ...CONFIG };
+// If C is present and loaded, override/merge
+if (typeof C !== 'undefined') {
+    appConfig = { ...appConfig, ...C };
 }
 
 // Function to require API key
 function checkApiKey() {
-    if (!appConfig.apiKey) {
+    if (!appConfig.K) {
         const key = prompt("Veuillez entrer votre clé API Hugging Face pour utiliser l'application (elle sera sauvegardée localement) :");
         if (key) {
-            appConfig.apiKey = key;
+            appConfig.K = key;
             localStorage.setItem("lingo_api_key", key);
             return true;
         }
@@ -287,11 +287,11 @@ async function callHuggingFace(messages) {
         const response = await fetch(url, {
             method: 'POST',
             headers: {
-                'Authorization': `Bearer ${appConfig.apiKey}`,
+                'Authorization': `Bearer ${appConfig.K}`,
                 'Content-Type': 'application/json'
             },
             body: JSON.stringify({
-                model: appConfig.model,
+                model: appConfig.M,
                 messages: formattedMessages,
                 max_tokens: 1024,
                 temperature: 0.7
