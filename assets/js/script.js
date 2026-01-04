@@ -5,6 +5,7 @@ let appConfig = {
     model: "Qwen/Qwen3-4B-Instruct-2507"
 };
 
+
 // If config.js is present and loaded, override/merge
 if (typeof CONFIG !== 'undefined') {
     appConfig = { ...appConfig, ...CONFIG };
