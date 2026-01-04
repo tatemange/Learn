@@ -63,67 +63,7 @@
         }
     </script>
 
-    <style>
-        body {
-            background-color: #f8fafc;
-            background-image: 
-                radial-gradient(at 0% 0%, rgba(139, 92, 246, 0.12) 0px, transparent 50%),
-                radial-gradient(at 100% 0%, rgba(168, 85, 247, 0.15) 0px, transparent 50%),
-                radial-gradient(at 100% 100%, rgba(59, 130, 246, 0.12) 0px, transparent 50%),
-                radial-gradient(at 0% 100%, rgba(167, 139, 250, 0.1) 0px, transparent 50%);
-            background-attachment: fixed;
-            min-height: 100vh;
-        }
-        @media (prefers-color-scheme: dark) {
-            body {
-                background-color: #0f172a;
-                background-image: 
-                    radial-gradient(at 0% 0%, rgba(139, 92, 246, 0.08) 0px, transparent 50%),
-                    radial-gradient(at 100% 0%, rgba(147, 51, 234, 0.1) 0px, transparent 50%),
-                    radial-gradient(at 100% 100%, rgba(124, 58, 237, 0.08) 0px, transparent 50%);
-            }
-        }
-        .glass-panel {
-            background: rgba(255, 255, 255, 0.65);
-            backdrop-filter: blur(12px);
-            -webkit-backdrop-filter: blur(12px);
-            border: 1px solid rgba(255, 255, 255, 0.5);
-            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05);
-        }
-        @media (prefers-color-scheme: dark) {
-            .glass-panel {
-                background: rgba(30, 41, 59, 0.65);
-                border: 1px solid rgba(255, 255, 255, 0.05);
-                box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.2);
-            }
-            .katex { color: #f1f5f9; } /* Fix katex color on dark */
-        }
-        .prose ul { list-style-type: disc; padding-left: 1.5em; }
-        .prose h3 { font-weight: 700; margin-top: 1em; color: currentColor; }
-        .prose p { margin-bottom: 0.5em; }
-        .prose code { background: rgba(139, 92, 246, 0.1); padding: 0.125rem 0.25rem; border-radius: 0.25rem; }
-        
-        /* Focus States */
-        *:focus-visible { outline: 2px solid #8b5cf6; outline-offset: 2px; }
-        
-        /* Custom Scrollbars */
-        .chat-scroll::-webkit-scrollbar { width: 6px; }
-        .chat-scroll::-webkit-scrollbar-track { background: transparent; }
-        .chat-scroll::-webkit-scrollbar-thumb { background-color: rgba(139, 92, 246, 0.3); border-radius: 20px; }
-        .chat-scroll::-webkit-scrollbar-thumb:hover { background-color: rgba(139, 92, 246, 0.5); }
-        
-        .custom-scrollbar::-webkit-scrollbar { width: 4px; height: 4px; }
-        .custom-scrollbar::-webkit-scrollbar-track { background: transparent; }
-        .custom-scrollbar::-webkit-scrollbar-thumb { background-color: rgba(139, 92, 246, 0.3); border-radius: 20px; }
-        .custom-scrollbar::-webkit-scrollbar-thumb:hover { background-color: rgba(139, 92, 246, 0.5); }
-        
-        /* Subject Tab Active State */
-        .tab-active { background-color: #8b5cf6; color: white; border-color: transparent; box-shadow: 0 2px 8px rgba(139, 92, 246, 0.3); }
-        
-        /* Smooth Transitions */
-        .subject-tab { transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1); }
-        .subject-tab:not(.tab-active):hover { transform: translateY(-1px); }
-    </style>
+    <link rel="stylesheet" href="assets/css/style.css">
 </head>
 <body class="text-slate-800 dark:text-slate-100 transition-colors duration-500 overflow-x-hidden p-3 md:p-6 lg:p-8 flex flex-col items-center">
 
@@ -212,7 +152,7 @@
 
                 <!-- Generator -->
                 <div id="generatorContainer" class="flex flex-col items-center gap-4">
-                    <button id="btnGenerate" onclick="generateContent()" class="relative w-full max-w-md bg-gradient-to-r from-violet-500 to-violet-600 hover:from-violet-600 hover:to-violet-700 text-white font-bold py-4 px-6 rounded-2xl shadow-lg transform transition-all hover:-translate-y-1 hover:shadow-xl active:translate-y-0 disabled:opacity-70 disabled:cursor-not-allowed">
+                    <button id="btnGenerate" onclick="generateContent()" class="relative w-fit bg-gradient-to-r from-violet-500 to-violet-600 hover:from-violet-600 hover:to-violet-700 text-white font-bold py-3 px-6 rounded-2xl transform transition-all hover:-translate-y-1 active:translate-y-0 disabled:opacity-70 disabled:cursor-not-allowed">
                         <div class="flex items-center justify-center gap-3">
                             <span id="btnIcon"><i data-lucide="sparkles" class="w-5 h-5 fill-current"></i></span>
                             <span id="btnText">Générer un exercice</span>
@@ -225,7 +165,7 @@
 
                 <!-- Content Render Area -->
                 <div id="contentContainer" class="hidden flex flex-col gap-6">
-                    <div class="bg-white/50 dark:bg-slate-800/50 rounded-2xl p-6 text-center border border-white/40 dark:border-white/10 shadow-sm relative group min-h-[150px] flex flex-col justify-center items-center">
+                    <div class="bg-white/50 dark:bg-slate-800/50 rounded-2xl p-6 text-center border border-white/40 dark:border-white/10 relative group min-h-[150px] flex flex-col justify-center items-center">
                         <div id="mainContent" class="text-2xl md:text-3xl font-bold text-slate-800 dark:text-slate-100 mb-2 leading-relaxed max-w-full overflow-x-auto">
                             <!-- Content -->
                         </div>
@@ -261,455 +201,72 @@
                 </div>
             </section>
 
-            <!-- Chat Section -->
-            <section class="glass-panel rounded-premium p-6 flex flex-col h-[400px] animate-fade-in-up relative" style="animation-delay: 0.3s;">
-                <div class="flex items-center gap-2 mb-4 pb-4 border-b border-slate-200 dark:border-slate-700">
-                    <i data-lucide="messages-square" class="w-5 h-5 text-violet-500"></i>
-                    <h3 class="font-bold">Discussion & Aide</h3>
+            <!-- Chat Section (Floating Window) -->
+            <section id="chatWindow" class="glass-panel rounded-premium p-0 flex flex-col w-[400px] h-[500px] fixed bottom-10 right-10 z-50 animate-fade-in-up shadow-2xl overflow-hidden" style="animation-delay: 0.3s;">
+                <div id="chatHeader" class="p-4 border-b border-slate-200/50 dark:border-slate-700/50 cursor-grab active:cursor-grabbing bg-white/40 dark:bg-slate-800/40 backdrop-blur-md flex justify-between items-center select-none">
+                    <div class="flex items-center gap-2">
+                        <i data-lucide="messages-square" class="w-5 h-5 text-violet-500"></i>
+                         <h3 class="font-bold text-sm">Discussion & Aide</h3>
+                    </div>
+                     <div class="flex gap-1.5 items-center">
+                        <button onclick="toggleChat()" class="p-1 hover:bg-slate-200/50 dark:hover:bg-slate-700/50 rounded-full transition-colors text-slate-500">
+                            <i data-lucide="minus" class="w-4 h-4"></i>
+                        </button>
+                    </div>
                 </div>
+                
+                <div class="p-4 flex flex-col flex-1 overflow-hidden">
                 
                 <div id="chatHistory" class="flex-1 overflow-y-auto chat-scroll space-y-4 mb-4 p-2">
                     <div class="flex items-start gap-3">
                         <div class="w-8 h-8 rounded-full bg-violet-100 dark:bg-violet-900 flex items-center justify-center flex-shrink-0">
                             <i data-lucide="bot" class="w-4 h-4 text-violet-600 dark:text-violet-300"></i>
                         </div>
-                        <div class="bg-white/60 dark:bg-slate-700/60 p-3 rounded-2xl rounded-tl-none text-sm shadow-sm max-w-[85%]">
+                        <div class="bg-white/60 dark:bg-slate-700/60 p-3 rounded-2xl rounded-tl-none text-sm max-w-[85%]">
                             <p>Bonjour ! Je suis prêt pour les Maths, la Physique ou l'Anglais.</p>
                         </div>
                     </div>
                 </div>
 
-                <div class="relative w-full">
-                    <textarea id="chatInput" rows="1" placeholder="Posez une question (ex: Résous pour x...)" 
-                        class="w-full bg-slate-100 dark:bg-slate-800 border-none rounded-2xl py-3 px-5 pr-12 focus:ring-2 focus:ring-violet-500 outline-none transition-all shadow-inner resize-none overflow-hidden"
-                        onkeypress="handleChatEnter(event)" oninput="this.style.height = ''; this.style.height = this.scrollHeight + 'px'"></textarea>
-                    <button onclick="sendChatMessage()" class="absolute right-2 bottom-2 p-2 bg-violet-500 text-white rounded-xl hover:bg-violet-600 transition-colors shadow-md flex items-center justify-center h-8 w-8">
-                        <i data-lucide="send" class="w-4 h-4"></i>
+                <div class="w-full bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-full flex items-end p-1.5 gap-2 transition-all focus-within:ring-2 focus-within:ring-violet-500/50 shadow-sm hover:shadow-md">
+                    <button class="p-2.5 mb-1 text-slate-400 hover:text-slate-600 rounded-full hover:bg-slate-100 dark:hover:bg-slate-700 transition-colors flex-shrink-0">
+                        <i data-lucide="plus" class="w-5 h-5"></i>
                     </button>
+                    
+                    <textarea id="chatInput" rows="1" placeholder="Poser une question" 
+                        class="flex-1 bg-transparent border-none outline-none text-slate-800 dark:text-slate-100 placeholder-slate-400 py-3 resize-none max-h-32 overflow-y-auto"
+                        onkeypress="handleChatEnter(event)" 
+                        oninput="handleInputResize(this)"></textarea>
+                        
+                    <div class="flex items-center gap-1 mb-1 flex-shrink-0">
+                         <button class="p-2.5 text-slate-400 hover:text-slate-600 rounded-full hover:bg-slate-100 dark:hover:bg-slate-700 transition-colors">
+                            <i data-lucide="mic" class="w-5 h-5"></i>
+                        </button>
+                        <button onclick="sendChatMessage()" class="w-10 h-10 bg-black text-white dark:bg-white dark:text-black rounded-full hover:opacity-80 transition-opacity flex items-center justify-center">
+                            <i id="iconVoice" data-lucide="audio-lines" class="w-5 h-5"></i>
+                            <i id="iconSend" data-lucide="arrow-up" class="w-5 h-5 hidden"></i>
+                        </button>
+                    </div>
+                </div>
+                <!-- Resize Handle -->
+                <div id="resizeHandle" class="absolute bottom-0 right-0 w-6 h-6 cursor-nwse-resize z-50 flex items-end justify-end p-1 opacity-50 hover:opacity-100 transition-opacity">
+                    <svg width="10" height="10" viewBox="0 0 10 10" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M8 2L2 8" stroke="currentColor" stroke-width="2" stroke-linecap="round" class="text-slate-400 dark:text-slate-500"/>
+                        <path d="M8 6L6 8" stroke="currentColor" stroke-width="2" stroke-linecap="round" class="text-slate-400 dark:text-slate-500"/>
+                    </svg>
                 </div>
             </section>
+
+            <!-- Chat FAB (Floating Action Button) -->
+            <button id="chatFab" onclick="toggleChat()" class="fixed bottom-10 right-10 z-40 w-14 h-14 bg-violet-600 hover:bg-violet-700 text-white rounded-full shadow-lg flex items-center justify-center transition-all hover:scale-110 opacity-0 transform scale-0">
+                 <i data-lucide="message-square" class="w-7 h-7"></i>
+            </button>
 
         </div>
     </main>
 
     <!-- JS Logic -->
-    <script>
-        const CONFIG = {
-            apiKey: "AIzaSyDu4NeTL_u3oTQiYh8mVxpkQibvvDvkvp8",
-            model: "gemini-2.5-flash-preview-09-2025"
-        };
-        
-        const state = {
-            subject: 'english', // english, math, physics, general
-            currentContent: null,
-            isLoading: false,
-            chatHistory: [],
-            stats: {
-                comprehension: 5,
-                reasoning: 3,
-                vocabulary: 4,
-                memory: 2,
-                application: 3
-            }
-        };
-
-        let skillsChart;
-
-        // --- CHART ---
-        function initChart() {
-            const ctx = document.getElementById('skillsChart').getContext('2d');
-            const isDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
-            
-            Chart.defaults.color = isDark ? '#94a3b8' : '#64748b';
-            Chart.defaults.borderColor = isDark ? '#334155' : '#e2e8f0';
-
-            skillsChart = new Chart(ctx, {
-                type: 'radar',
-                data: {
-                    labels: ['Compréhension', 'Raisonnement', 'Vocabulaire', 'Mémoire', 'Application'],
-                    datasets: [{
-                        label: 'Niveau',
-                        data: [state.stats.comprehension, state.stats.reasoning, state.stats.vocabulary, state.stats.memory, state.stats.application],
-                        backgroundColor: 'rgba(139, 92, 246, 0.2)',
-                        borderColor: '#8b5cf6',
-                        pointBackgroundColor: '#8b5cf6',
-                        pointBorderColor: '#fff'
-                    }]
-                },
-                options: {
-                    responsive: true,
-                    maintainAspectRatio: false,
-                    scales: {
-                        r: {
-                            min: 0, max: 10,
-                            ticks: { display: false },
-                            grid: { color: isDark ? 'rgba(255,255,255,0.05)' : 'rgba(0,0,0,0.05)' }
-                        }
-                    },
-                    plugins: { legend: { display: false } }
-                }
-            });
-        }
-
-        // --- SUBJECT MANAGEMENT ---
-        const SUBJECTS = {
-            english: {
-                btnText: "Générer une phrase",
-                icon: "languages",
-                prompt: "Génère une phrase en anglais (B2) avec sa traduction.",
-                jsonInstruct: '{ "main": "Sentence in English", "sub": "Traduction en Français", "type": "english" }',
-                actions: [
-                    { id: 'grammar', label: 'Grammaire', icon: 'book' },
-                    { id: 'vocab', label: 'Vocabulaire', icon: 'search' },
-                    { id: 'pronun', label: 'Prononciation', icon: 'mic' },
-                    { id: 'quiz', label: 'Quiz Rapide', icon: 'help-circle' }
-                ]
-            },
-            math: {
-                btnText: "Générer un problème",
-                icon: "sigma",
-                prompt: "Génère une équation mathématique ou un court problème de niveau Lycée (LaTeX format pour les maths).",
-                jsonInstruct: '{ "main": "Equation (LaTeX) or Problem", "sub": "Indice ou contexte simple", "type": "math" }',
-                actions: [
-                    { id: 'solve', label: 'Solution', icon: 'check-circle' },
-                    { id: 'step', label: 'Pas à pas', icon: 'list' },
-                    { id: 'formula', label: 'Formules clés', icon: 'function-square' },
-                    { id: 'similar', label: 'Ex. Similaire', icon: 'copy' }
-                ]
-            },
-            physics: {
-                btnText: "Générer un concept",
-                icon: "atom",
-                prompt: "Génère une loi physique ou un mini-problème de physique (LaTeX pour formules).",
-                jsonInstruct: '{ "main": "Loi ou Problème", "sub": "Brève explication intuitive", "type": "physics" }',
-                actions: [
-                    { id: 'explain', label: 'Explication', icon: 'lightbulb' },
-                    { id: 'units', label: 'Unités', icon: 'ruler' },
-                    { id: 'history', label: 'Historique', icon: 'history' },
-                    { id: 'app', label: 'Application', icon: 'hammer' }
-                ]
-            },
-            code: {
-                btnText: "Générer un snippet",
-                icon: "code-2",
-                prompt: "Génère un snippet de code intéressant en Python ou JavaScript (Algo ou Pattern).",
-                jsonInstruct: '{ "main": "Le code (Markdown)", "sub": "Ce que ça fait", "type": "code" }',
-                actions: [
-                    { id: 'debug', label: 'Optimiser', icon: 'zap' },
-                    { id: 'explain', label: 'Expliquer', icon: 'info' },
-                    { id: 'convert', label: 'Typer', icon: 'file-code' },
-                    { id: 'bugs', label: 'Bugs potentiels', icon: 'bug' }
-                ]
-            },
-            history: {
-                btnText: "Générer un événement",
-                icon: "scroll",
-                prompt: "Génère un événement historique marquant (Antiquité à nos jours).",
-                jsonInstruct: '{ "main": "L\'événement et la date", "sub": "Pourquoi c\'est majeur", "type": "history" }',
-                actions: [
-                    { id: 'causes', label: 'Causes', icon: 'arrow-left' },
-                    { id: 'consequences', label: 'Conséquences', icon: 'arrow-right' },
-                    { id: 'people', label: 'Personnages', icon: 'users' },
-                    { id: 'date', label: 'Timeline', icon: 'calendar' }
-                ]
-            },
-            biology: {
-                btnText: "Générer un concept bio",
-                icon: "dna",
-                prompt: "Génère un concept de biologie (Cellule, ADN, Évolution...).",
-                jsonInstruct: '{ "main": "Le concept", "sub": "Définition simple", "type": "biology" }',
-                actions: [
-                    { id: 'function', label: 'Fonction', icon: 'activity' },
-                    { id: 'location', label: 'Localisation', icon: 'map-pin' },
-                    { id: 'diagram', label: 'Structure', icon: 'box' },
-                    { id: 'disease', label: 'Pathologies', icon: 'alert-triangle' }
-                ]
-            },
-            chemistry: {
-                btnText: "Générer une réaction",
-                icon: "flask-conical",
-                prompt: "Génère une réaction chimique ou une molécule intéressante.",
-                jsonInstruct: '{ "main": "Formule (LaTeX)", "sub": "Nom commun/IUPAC", "type": "chemistry" }',
-                actions: [
-                    { id: 'balance', label: 'Équilibrer', icon: 'scale' },
-                    { id: 'products', label: 'Produits', icon: 'arrow-right-circle' },
-                    { id: 'risk', label: 'Dangers', icon: 'skull' },
-                    { id: 'use', label: 'Usage', icon: 'factory' }
-                ]
-            },
-            economy: {
-                btnText: "Générer un principe",
-                icon: "trending-up",
-                prompt: "Génère un principe économique ou un biais cognitif lié à l'argent.",
-                jsonInstruct: '{ "main": "Le principe", "sub": "En une phrase", "type": "economy" }',
-                actions: [
-                    { id: 'example', label: 'Exemple', icon: 'pie-chart' },
-                    { id: 'history', label: 'Origine', icon: 'history' },
-                    { id: 'impact', label: 'Impact', icon: 'globe' },
-                    { id: 'critic', label: 'Critiques', icon: 'message-square' }
-                ]
-            },
-            philosophy: {
-                btnText: "Générer une pensée",
-                icon: "brain-circuit",
-                prompt: "Génère une citation philosophique ou un concept célèbre.",
-                jsonInstruct: '{ "main": "La citation/concept", "sub": "Auteur et École", "type": "philosophy" }',
-                actions: [
-                    { id: 'analyze', label: 'Analyser', icon: 'zoom-in' },
-                    { id: 'context', label: 'Contexte', icon: 'book-open' },
-                    { id: 'counter', label: 'Réfutation', icon: 'shield' },
-                    { id: 'today', label: 'Actuel ?', icon: 'clock' }
-                ]
-            },
-            geography: {
-                btnText: "Générer un lieu",
-                icon: "map",
-                prompt: "Génère un fait géographique sur un pays, une ville ou un phénomène naturel.",
-                jsonInstruct: '{ "main": "Le lieu/phénomène", "sub": "Localisation", "type": "geography" }',
-                actions: [
-                    { id: 'climate', label: 'Climat', icon: 'sun' },
-                    { id: 'pop', label: 'Population', icon: 'users' },
-                    { id: 'geo', label: 'Géopolitique', icon: 'flag' },
-                    { id: 'fun', label: 'Fun Fact', icon: 'star' }
-                ]
-            },
-            literature: {
-                btnText: "Générer une oeuvre",
-                icon: "book-open",
-                prompt: "Génère un titre d'oeuvre littéraire classique ou un incipit célèbre.",
-                jsonInstruct: '{ "main": "Titre/Incipit", "sub": "Auteur", "type": "literature" }',
-                actions: [
-                    { id: 'style', label: 'Style', icon: 'pen-tool' },
-                    { id: 'meaning', label: 'Sens', icon: 'eye' },
-                    { id: 'era', label: 'Époque', icon: 'calendar' },
-                    { id: 'similar', label: 'A lire aussi', icon: 'copy' }
-                ]
-            },
-            general: {
-                btnText: "Fait intéressant",
-                icon: "globe",
-                prompt: "Génère un fait de culture générale fascinant (Histoire, Science, Géo).",
-                jsonInstruct: '{ "main": "Le fait principal", "sub": "Pourquoi c\'est important", "type": "general" }',
-                actions: [
-                    { id: 'more', label: 'En savoir plus', icon: 'plus' },
-                    { id: 'quiz', label: 'Vrai/Faux', icon: 'help-circle' },
-                    { id: 'context', label: 'Contexte', icon: 'map' },
-                    { id: 'source', label: 'Source', icon: 'link' }
-                ]
-            }
-        };
-
-        function setSubject(subj) {
-            state.subject = subj;
-            
-            // UI Update Tabs
-            document.querySelectorAll('.subject-tab').forEach(btn => {
-                btn.classList.remove('tab-active', 'bg-violet-600', 'text-white');
-                btn.classList.add('hover:bg-white/50');
-                
-                // Robust check: see if the button's onclick contains the subject key
-                if(btn.getAttribute('onclick').includes(`'${subj}'`)) {
-                    btn.classList.add('tab-active');
-                    btn.classList.remove('hover:bg-white/50');
-                }
-            });
-
-            // Update Generate Button
-            const conf = SUBJECTS[subj];
-            document.getElementById('btnText').textContent = conf.btnText;
-            
-            // Clear content if switching
-            document.getElementById('welcomeState').classList.remove('hidden');
-            document.getElementById('contentContainer').classList.add('hidden');
-            document.getElementById('analysisResult').classList.add('hidden');
-            
-            lucide.createIcons();
-        }
-
-        function renderActionButtons() {
-            const container = document.getElementById('actionButtons');
-            container.innerHTML = '';
-            
-            const actions = SUBJECTS[state.subject].actions;
-            actions.forEach(act => {
-                const btn = document.createElement('button');
-                btn.className = "flex flex-col items-center justify-center p-3 rounded-xl bg-white/40 dark:bg-slate-800/40 hover:bg-white dark:hover:bg-slate-700 border border-white/50 dark:border-white/10 transition-all hover:scale-105 group";
-                btn.onclick = () => analyze(act.id);
-                btn.innerHTML = `
-                    <i data-lucide="${act.icon}" class="w-6 h-6 text-violet-600 dark:text-violet-400 mb-1 group-hover:text-violet-500"></i>
-                    <span class="text-[10px] font-bold text-slate-600 dark:text-slate-300 uppercase">${act.label}</span>
-                `;
-                container.appendChild(btn);
-            });
-            lucide.createIcons();
-        }
-
-        // --- API & GENERATION ---
-        async function callGemini(contents) {
-            const url = `https://generativelanguage.googleapis.com/v1beta/models/${CONFIG.model}:generateContent?key=${CONFIG.apiKey}`;
-            try {
-                const response = await fetch(url, {
-                    method: 'POST',
-                    headers: { 'Content-Type': 'application/json' },
-                    body: JSON.stringify({ contents, generationConfig: { temperature: 0.7 } })
-                });
-                const data = await response.json();
-                return data.candidates[0].content.parts[0].text;
-            } catch (e) { console.error(e); throw e; }
-        }
-
-        async function generateContent() {
-            setLoading(true);
-            const conf = SUBJECTS[state.subject];
-            
-            const prompt = `${conf.prompt} 
-            Retourne STRICTEMENT un JSON valide : ${conf.jsonInstruct}.
-            Important: Pour les Maths/Physique, utilise le format LaTeX standard (ex: $$ x^2 $$ ou \\( x \\)).`;
-
-            try {
-                let text = await callGemini([{ role: 'user', parts: [{ text: prompt }] }]);
-                text = text.replace(/```json|```/g, '').trim();
-                const data = JSON.parse(text);
-                
-                state.currentContent = data;
-                displayContent(data);
-                
-                // Add to Chat Context
-                state.chatHistory.push({ role: 'user', parts: [{ text: `Context: ${data.main}` }] });
-                state.chatHistory.push({ role: 'model', parts: [{ text: "Bien reçu." }] });
-
-            } catch (e) {
-                alert("Erreur: " + e.message);
-            } finally {
-                setLoading(false);
-            }
-        }
-
-        async function analyze(actionId) {
-            if (!state.currentContent) return;
-            setLoading(true);
-            
-            const context = state.currentContent.main;
-            const prompt = `Agis en tant que prof de ${state.subject}.
-            Contexte: "${context}".
-            Action demandée: "${actionId}" (Explique, Résous, ou Analyse).
-            Utilise LaTeX pour les formules. Sois pédagogue et clair.`;
-
-            try {
-                const res = await callGemini([{ role: 'user', parts: [{ text: prompt }] }]);
-                const container = document.getElementById('analysisResult');
-                container.classList.remove('hidden');
-                
-                const contentDiv = document.getElementById('analysisContent');
-                contentDiv.innerHTML = marked.parse(res);
-                renderMath(contentDiv); // Render KaTeX
-                
-                updateStats(); // Fake stat update
-
-            } catch(e) { console.error(e); } 
-            finally { setLoading(false); }
-        }
-
-        async function sendChatMessage() {
-            const el = document.getElementById('chatInput');
-            const msg = el.value.trim();
-            if(!msg) return;
-            
-            addMessage('user', msg);
-            el.value = '';
-            
-            try {
-                const history = [...state.chatHistory, { role: 'user', parts: [{ text: msg }] }];
-                const res = await callGemini(history);
-                addMessage('bot', res);
-                state.chatHistory.push({ role: 'user', parts: [{ text: msg }] });
-                state.chatHistory.push({ role: 'model', parts: [{ text: res }] });
-            } catch(e) { addMessage('bot', "Erreur de connexion."); }
-        }
-
-        // --- UTILS ---
-        function displayContent(data) {
-            document.getElementById('welcomeState').classList.add('hidden');
-            document.getElementById('contentContainer').classList.remove('hidden');
-            
-            const main = document.getElementById('mainContent');
-            const sub = document.getElementById('subContent');
-            
-            main.textContent = data.main;
-            sub.textContent = data.sub; // Or innerHTML if we trust sources, textContent safer.
-            
-            renderMath(main);
-            renderMath(sub);
-            
-            renderActionButtons();
-        }
-
-        function renderMath(element) {
-            renderMathInElement(element, {
-                delimiters: [
-                    {left: '$$', right: '$$', display: true},
-                    {left: '$', right: '$', display: false},
-                    {left: '\\(', right: '\\)', display: false},
-                    {left: '\\[', right: '\\]', display: true}
-                ],
-                throwOnError: false
-            });
-        }
-
-        function addMessage(role, text) {
-            const box = document.getElementById('chatHistory');
-            const div = document.createElement('div');
-            div.className = `flex items-start gap-3 ${role === 'user' ? 'flex-row-reverse' : ''}`;
-            const icon = role === 'bot' ? 'bot' : 'user';
-            
-            div.innerHTML = `
-                <div class="w-8 h-8 rounded-full ${role==='bot'?'bg-violet-100 dark:bg-violet-900':'bg-slate-200'} flex items-center justify-center flex-shrink-0">
-                    <i data-lucide="${icon}" class="w-4 h-4"></i>
-                </div>
-                <div class="${role==='bot'?'bg-white/60 dark:bg-slate-700/60 rounded-tl-none':'bg-violet-500 text-white rounded-tr-none'} p-3 rounded-2xl text-sm shadow-sm max-w-[85%]">
-                     <div class="prose prose-xs ${role==='bot'?'prose-slate dark:prose-invert':'prose-invert'} max-w-none">
-                        ${marked.parse(text)}
-                    </div>
-                </div>
-            `;
-            box.appendChild(div);
-            renderMath(div);
-            lucide.createIcons();
-            box.scrollTop = box.scrollHeight;
-        }
-
-        function updateStats() {
-            // Randomly increment a stat for visual feedback
-            const keys = [0,1,2,3,4];
-            const r = keys[Math.floor(Math.random() * keys.length)];
-            skillsChart.data.datasets[0].data[r] += 0.5;
-            skillsChart.update();
-        }
-
-        function setLoading(b) {
-            document.getElementById('btnGenerate').disabled = b;
-            document.getElementById('loadingIndicator').classList.toggle('hidden', !b);
-            state.isLoading = b;
-        }
-        
-        function closeAnalysis() {
-            document.getElementById('analysisResult').classList.add('hidden');
-        }
-
-        function handleChatEnter(e) {
-            if (e.key === 'Enter' && !e.shiftKey) {
-                e.preventDefault();
-                sendChatMessage();
-            }
-        }
-
-        // INIT
-        document.addEventListener('DOMContentLoaded', () => {
-            lucide.createIcons();
-            initChart();
-            renderActionButtons(); // Initial render for default subject
-        });
-
-    </script>
+    <script src="assets/js/config.js"></script>
+    <script src="assets/js/script.js"></script>
 </body>
 </html>

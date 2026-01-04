@@ -1,0 +1,140 @@
+        body {
+            background-color: #f8fafc;
+            background-image: 
+                radial-gradient(at 0% 0%, rgba(139, 92, 246, 0.12) 0px, transparent 50%),
+                radial-gradient(at 100% 0%, rgba(168, 85, 247, 0.15) 0px, transparent 50%),
+                radial-gradient(at 100% 100%, rgba(59, 130, 246, 0.12) 0px, transparent 50%),
+                radial-gradient(at 0% 100%, rgba(167, 139, 250, 0.1) 0px, transparent 50%);
+            background-attachment: fixed;
+            min-height: 100vh;
+        }
+        @media (prefers-color-scheme: dark) {
+            body {
+                background-color: #0f172a;
+                background-image: 
+                    radial-gradient(at 0% 0%, rgba(139, 92, 246, 0.08) 0px, transparent 50%),
+                    radial-gradient(at 100% 0%, rgba(147, 51, 234, 0.1) 0px, transparent 50%),
+                    radial-gradient(at 100% 100%, rgba(124, 58, 237, 0.08) 0px, transparent 50%);
+            }
+        }
+        .glass-panel {
+            background: rgba(255, 255, 255, 0.65);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border: 1px solid rgba(255, 255, 255, 0.5);
+        }
+        @media (prefers-color-scheme: dark) {
+            .glass-panel {
+                background: rgba(30, 41, 59, 0.65);
+                border: 1px solid rgba(255, 255, 255, 0.05);
+            }
+            .katex { color: #f1f5f9; } /* Fix katex color on dark */
+        }
+        .prose ul { list-style-type: disc; padding-left: 1.5em; }
+        .prose h3 { font-weight: 700; margin-top: 1em; color: currentColor; }
+        .prose p { margin-bottom: 0.5em; }
+        .prose code { background: rgba(139, 92, 246, 0.1); padding: 0.125rem 0.25rem; border-radius: 0.25rem; }
+        
+        /* Focus States */
+        *:focus-visible { outline: 2px solid #8b5cf6; outline-offset: 2px; }
+        
+        /* Custom Scrollbars */
+        .chat-scroll::-webkit-scrollbar { width: 6px; }
+        .chat-scroll::-webkit-scrollbar-track { background: transparent; }
+        .chat-scroll::-webkit-scrollbar-thumb { background-color: rgba(139, 92, 246, 0.3); border-radius: 20px; }
+        .chat-scroll::-webkit-scrollbar-thumb:hover { background-color: rgba(139, 92, 246, 0.5); }
+        
+       /* KaTeX Display Styling */
+.katex-display {
+    background-color: rgba(139, 92, 246, 0.1); /* Violet tint */
+    padding: 1rem;
+    border-radius: 0.75rem;
+    border: 1px solid rgba(139, 92, 246, 0.2);
+    margin: 1rem 0;
+    overflow-x: auto;
+}
+
+.dark .katex-display {
+    background-color: rgba(139, 92, 246, 0.15);
+    border-color: rgba(139, 92, 246, 0.3);
+}
+        
+        .custom-scrollbar::-webkit-scrollbar { width: 4px; height: 4px; }
+        .custom-scrollbar::-webkit-scrollbar-track { background: transparent; }
+        .custom-scrollbar::-webkit-scrollbar-thumb { background-color: rgba(139, 92, 246, 0.3); border-radius: 20px; }
+        .custom-scrollbar::-webkit-scrollbar-thumb:hover { background-color: rgba(139, 92, 246, 0.5); }
+        
+        /* Subject Tab Active State */
+        .tab-active { background-color: #8b5cf6; color: white; border-color: transparent; }
+        
+        /* Smooth Transitions */
+        .subject-tab { transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1); }
+        .subject-tab:not(.tab-active):hover { transform: translateY(-1px); }
+/* Mobile Responsive Chat */
+@media (max-width: 768px) {
+    #chatWindow {
+        width: 100% !important;
+        height: 100% !important;
+        top: 0 !important;
+        left: 0 !important;
+        right: 0 !important;
+        bottom: 0 !important;
+        border-radius: 0 !important;
+        transform: none !important;
+        max-width: none !important;
+        position: fixed !important;
+        z-index: 9999 !important; /* Ensure it's on top */
+    }
+    #resizeHandle {
+        display: none !important;
+    }
+}
+
+/* Chat Toggle FAB */
+#chatFab {
+    position: fixed;
+    bottom: 5rem;
+    right: 2rem;
+    z-index: 40; /* Below chat window (50) */
+    width: 3.5rem;
+    height: 3.5rem;
+    border-radius: 9999px;
+    background-color: #8b5cf6;
+    color: white;
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    transform: scale(0); /* Hidden by default if chat is open */
+    opacity: 0;
+}
+
+#chatFab.visible {
+    transform: scale(1);
+    opacity: 1;
+}
+
+#chatFab:hover {
+    background-color: #7c3aed;
+    transform: scale(1.1);
+}
+
+/* Chat Hidden State */
+.chat-hidden {
+    transform: translateY(20px);
+    opacity: 0;
+    pointer-events: none;
+    visibility: hidden; /* Ensure it doesn't block clicks */
+}
+
+/* Override for mobile to ensure hiding works even with !important mobile styles */
+@media (max-width: 768px) {
+    #chatWindow.chat-hidden {
+        transform: translateY(100%) !important;
+        opacity: 1 !important; /* Keep opacity 1 for slide effect */
+        visibility: hidden !important;
+        pointer-events: none !important;
+    }
+}
